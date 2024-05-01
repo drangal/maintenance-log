@@ -5,8 +5,7 @@ import LogLogo from '@/components/LogLogo'
 
 export default async function Index() {
   const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
+    // Эта функция предназначена только подключения Supabase.
     try {
       createClient()
       return true
