@@ -1,6 +1,20 @@
+import { Yeseva_One } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { GeistSans } from 'geist/font/sans'
 import './globals.css'
 import Head from 'next/head'
+
+const yeseva_one = Yeseva_One({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-yeseva_one',
+  weight: '400'
+})
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter'
+})
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -22,7 +36,9 @@ export default function RootLayout({
       <Head>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <body className='bg-background text-foreground'>
+      <body
+        className={`${yeseva_one.variable} ${inter.variable} bg-background text-foreground`}
+      >
         <main className='min-h-screen flex flex-col items-center'>
           {children}
         </main>
