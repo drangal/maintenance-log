@@ -1,14 +1,18 @@
+import Link from 'next/link'
 import CarLogo from './CarLogo'
 
 export default function Header() {
   return (
     <div className='flex flex-col items-center'>
       <div className='flex justify-center items-center'>
-        <a href='' target='_blank' rel='noreferrer'>
+        <Link
+          href='/protected'
+          className='flex rounded-full no-underline hover:bg-btn-background'
+        >
           <CarLogo />
-        </a>
+        </Link>
       </div>
-      <h1 className='sr-only'>Supabase and Next.js Starter Template</h1>
+      <h1 className='sr-only'>The best solution for keeping a car logbook!</h1>
       <p className='text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center'>
         Лучшее решение по <b>ведению</b> бортвого <b>журнала</b> автомобиля!
       </p>

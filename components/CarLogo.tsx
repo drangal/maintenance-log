@@ -7,6 +7,7 @@ export default function CarLogo() {
       alt='CarLogo'
       width={400}
       height={100}
+      className='hide'
     />
   )
 }

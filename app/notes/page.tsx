@@ -8,11 +8,11 @@ export default function Page() {
   const supabase = createClient()
 
   useEffect(() => {
-    const getData = async () => {
+    const getNotes = async () => {
       const { data } = await supabase.from('notes').select()
       setNotes(data)
     }
-    getData()
+    getNotes()
   }, [])
 
   return <pre>{JSON.stringify(notes, null, 2)}</pre>
