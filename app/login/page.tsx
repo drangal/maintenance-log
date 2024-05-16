@@ -45,10 +45,13 @@ export default function Login({
     })
 
     if (error) {
-      return redirect('/login?message=Русский не работает в запросах')
+      console.log(error)
+      return redirect(
+        '/login?message=Some problems with signup. Try again later'
+      )
     }
 
-    return redirect(`${origin}/protected`)
+    return redirect(`/protected`)
   }
 
   return (
