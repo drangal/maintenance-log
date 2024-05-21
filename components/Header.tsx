@@ -4,10 +4,10 @@ import CarLogo from './CarLogo'
 export default function Header() {
   return (
     <div className='flex flex-col items-center'>
-      <div className='flex justify-center items-center'>
+      <div className='flex justify-center items-center '>
         <Link
           href='/protected'
-          className='flex rounded-full no-underline hover:bg-btn-background'
+          className='flex rounded-full no-underline dark:bg-black bg-gray-400 hover:bg-btn-background'
         >
           <CarLogo />
         </Link>
