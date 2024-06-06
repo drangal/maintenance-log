@@ -13,7 +13,7 @@ export default function AddMaintenanceLog() {
 
   const [workTypes, setWorkTypes] = useState([])
   const [carMileage, setCarMileage] = useState(null)
-  const [maintenanceMileage, setMaintenanceMileage] = useState(false)
+  const [maintenanceMileage, setMaintenanceMileage] = useState(null)
   const [workTypeId, setWorkTypeId] = useState(null)
   const [description, setDescription] = useState(null)
   const [price, setPrice] = useState(null)
@@ -44,6 +44,7 @@ export default function AddMaintenanceLog() {
         if (error) throw error
 
         setCarMileage(car_mileage[0]?.mileage)
+        setMaintenanceMileage(car_mileage[0]?.mileage)
         console.log('Пробег авто успешно прочитано: ', car_mileage[0]?.mileage)
       } catch (error) {
         console.error('Ошибка при получении пробега авто: ', error)

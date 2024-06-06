@@ -27,12 +27,13 @@ export default function MaintenanceLogInfo() {
         const { data: maintenance_records, error } = await supabase
           .from('maintenance_records')
           .select(
-            `
-    some_column,
-    other_table (
-      foreign_key
-    )
-  `
+            `description,
+            price,
+            maintenance_mileage,
+            created_at,
+            work_types (
+              name
+            )`
           )
           .eq('car_id', cid)
 
@@ -92,8 +93,8 @@ export default function MaintenanceLogInfo() {
                     ? maintenanceRecordsByCid.map((maintenanceRecordByCid) => (
                         <div className='relative w-full overflow-auto'>
                           <div className='flex flex-col border-b border-t transition-colors w-full caption-bottom text-sm'>
-                            <div className='py-2'>
-                              {maintenanceRecordByCid.work_type_id || '-'}
+                            <div className='py-2 underline underline-offset-2'>
+                              {maintenanceRecordByCid.work_types?.name || '-'}
                             </div>
                             <div className='py-2'>
                               {maintenanceRecordByCid.description || '-'}
@@ -101,7 +102,7 @@ export default function MaintenanceLogInfo() {
                             <div className='flex justify-between py-2'>
                               <div>
                                 {' '}
-                                {maintenanceRecordByCid.price + '₽' || '-'}
+                                {(maintenanceRecordByCid.price || '0') + '₽'}
                               </div>
                               <div>
                                 {' '}
