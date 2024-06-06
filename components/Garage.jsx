@@ -1,5 +1,4 @@
 import CarItem from './CarItem'
-import CarList from './CarList'
 import BackToPageButton from './BackToPageButton'
 import Link from 'next/link'
 import GarageItem from './GarageItem'
@@ -18,11 +17,7 @@ export default function Garage() {
             Новый Гараж
           </Link>
         </div>
-        <GarageItem>
-          <CarList>
-            <CarItem />
-          </CarList>
-        </GarageItem>
+        <GarageItem />
       </div>
     </div>
   )

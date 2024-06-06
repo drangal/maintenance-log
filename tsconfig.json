@@ -30,7 +30,10 @@
     ".next/types/**/*.ts",
     "components/AddGarageForm.jsx",
     "components/AddGarageModal.jsx",
-    "components/GarageItem.jsx"
+    "components/GarageItem.jsx",
+    "components/CarList.jsx",
+    "components/Garage.jsx",
+    "components/CarItem.jsx"
   ],
   "exclude": ["node_modules"]
 }

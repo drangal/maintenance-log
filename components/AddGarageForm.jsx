@@ -7,20 +7,8 @@ import BackToPageButton from './BackToPageButton'
 export default function AddGarageForm() {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  const [user, setUser] = useState(null)
   const supabase = createClient()
   const router = useRouter()
-
-  useEffect(() => {
-    const getUser = async () => {
-      const {
-        data: { user }
-      } = await supabase.auth.getUser()
-      setUser(user)
-    }
-
-    getUser()
-  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()

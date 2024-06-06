@@ -1,5 +1,4 @@
-import AddCarForm from '@/components/AddCarForm'
-import AccordionInput from '@/components/AccordionInputs'
+import AddMaintenanceLog from '@/components/AddMaintenanceLog'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 
@@ -15,7 +14,7 @@ export default async function Page() {
   }
   return (
     <div className='flex h-screen justify-center items-center'>
-      <AddCarForm />
+      <AddMaintenanceLog />
     </div>
   )
 }

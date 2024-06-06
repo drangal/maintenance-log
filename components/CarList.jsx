@@ -1,4 +1,10 @@
-export default function CarList({ children }: { children: React.ReactNode }) {
+'use client'
+import { useContext } from 'react'
+import { GarageContext } from './GarageItem'
+
+export default function CarList({ children }) {
+  const { garages } = useContext(GarageContext)
+
   return (
     <div className='rounded-lg border bg-card text-card-foreground shadow-sm'>
       <div className='flex p-6'>
