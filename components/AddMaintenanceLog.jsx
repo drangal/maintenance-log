@@ -122,7 +122,7 @@ export default function AddMaintenanceLog() {
                 id='maintenanceMileage'
                 placeholder='Введите пробег авто на момент записи'
                 type='number'
-                defaultValue={carMileage}
+                defaultValue={carMileage || 0}
                 max={carMileage || 9999999}
                 min={0}
                 onChange={(e) => setMaintenanceMileage(e.target.value)}

@@ -21,13 +21,34 @@ export default function MaintenanceLogInfo() {
     return `${day}.${month}.${year}г.`
   }
 
+  const deleteMaintenanceRecord = async (maintenanceRecordId) => {
+    try {
+      const { error } = await supabase
+        .from('maintenance_records')
+        .delete()
+        .eq('id', maintenanceRecordId)
+
+      if (error) throw error
+      console.log('Запись успешно удалена')
+      setMaintenanceRecordsByCid(
+        maintenanceRecordsByCid.filter(
+          (maintenanceRecordByCid) =>
+            maintenanceRecordByCid.id !== maintenanceRecordId
+        )
+      )
+    } catch (error) {
+      console.error('Ошибка при удалении записи:', error)
+    }
+  }
+
   useEffect(() => {
     const getMaintenanceRecordsByCid = async () => {
       try {
         const { data: maintenance_records, error } = await supabase
           .from('maintenance_records')
           .select(
-            `description,
+            `id, 
+            description,
             price,
             maintenance_mileage,
             created_at,
@@ -91,7 +112,10 @@ export default function MaintenanceLogInfo() {
                 <div className='mx-auto grid max-w-5xl items-center gap-6 pb-12'>
                   {maintenanceRecordsByCid.length != 0
                     ? maintenanceRecordsByCid.map((maintenanceRecordByCid) => (
-                        <div className='relative w-full overflow-auto'>
+                        <div
+                          key={maintenanceRecordByCid.id}
+                          className='relative w-full overflow-auto'
+                        >
                           <div className='flex flex-col border-b border-t transition-colors w-full caption-bottom text-sm'>
                             <div className='py-2 underline underline-offset-2'>
                               {maintenanceRecordByCid.work_types?.name || '-'}
@@ -106,8 +130,8 @@ export default function MaintenanceLogInfo() {
                               </div>
                               <div>
                                 {' '}
-                                {maintenanceRecordByCid.maintenance_mileage ||
-                                  '-'}
+                                {(maintenanceRecordByCid.maintenance_mileage ||
+                                  '0') + ' км'}
                               </div>
                               <div>
                                 {' '}
@@ -115,6 +139,54 @@ export default function MaintenanceLogInfo() {
                                   maintenanceRecordByCid.created_at
                                 ) || '-'}
                               </div>
+                            </div>
+                            <div className='flex justify-between w-full py-2'>
+                              <button
+                                className='inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-danger hover:bg-lime-300/30 hover:text-danger-foreground h-7 w-7 rounded-full'
+                                onClick={() =>
+                                  router.push(
+                                    '/protected/edit-maintenance-log?mlid=' +
+                                      maintenanceRecordByCid.id
+                                  )
+                                }
+                              >
+                                <svg
+                                  xmlns='http://www.w3.org/2000/svg'
+                                  viewBox='0 0 50 50'
+                                  width='24'
+                                  height='24'
+                                  fill='none'
+                                  stroke='currentColor'
+                                >
+                                  <path d='m9.6 40.4 2.5-9.9L27 15.6l7.4 7.4-14.9 14.9-9.9 2.5zm4.3-8.9-1.5 6.1 6.1-1.5L31.6 23 27 18.4 13.9 31.5z' />
+                                  <path d='M17.8 37.3c-.6-2.5-2.6-4.5-5.1-5.1l.5-1.9c3.2.8 5.7 3.3 6.5 6.5l-1.9.5z' />
+                                  <path d='m29.298 19.287 1.414 1.414-13.01 13.02-1.414-1.41zM11 39l2.9-.7c-.3-1.1-1.1-1.9-2.2-2.2L11 39zm24-16.6L27.6 15l3-3 .5.1c3.6.5 6.4 3.3 6.9 6.9l.1.5-3.1 2.9zM30.4 15l4.6 4.6.9-.9c-.5-2.3-2.3-4.1-4.6-4.6l-.9.9z' />
+                                </svg>
+                              </button>
+                              <button
+                                className='inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50  hover:bg-danger/60 hover:text-danger-foreground h-8 w-8 rounded-full'
+                                onClick={() =>
+                                  deleteMaintenanceRecord(
+                                    maintenanceRecordByCid.id
+                                  )
+                                }
+                              >
+                                <svg
+                                  xmlns='http://www.w3.org/2000/svg'
+                                  width='24'
+                                  height='24'
+                                  viewBox='0 0 24 24'
+                                  fill='none'
+                                  stroke='currentColor'
+                                  strokeWidth='2'
+                                  strokeLinecap='round'
+                                  strokeLinejoin='round'
+                                  className='h-3 w-3'
+                                >
+                                  <path d='M18 6 6 18'></path>
+                                  <path d='m6 6 12 12'></path>
+                                </svg>
+                              </button>
                             </div>
                           </div>
                         </div>
