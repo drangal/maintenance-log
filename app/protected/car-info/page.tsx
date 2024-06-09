@@ -1,6 +1,7 @@
 import BackToPageButton from '@/components/BackToPageButton'
 import CarInfo from '@/components/CarInfo'
 import MaintenanceLogInfo from '@/components/MaintenanceLogInfo'
+import PlannedMLInfo from '@/components/PlannedMLInfo'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 
@@ -22,6 +23,7 @@ export default async function Page() {
       </div>
       <CarInfo />
       <MaintenanceLogInfo />
+      <PlannedMLInfo />
     </div>
   )
 }
